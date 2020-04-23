@@ -16,29 +16,30 @@ usermod -aG sudo vagrant
 echo 'APT::Periodic::Enable "0";' >> /etc/apt/apt.conf.d/10periodic
 
 DEBIAN_FRONTEND=non-interactive apt-get update
+DEBIAN_FRONTEND=non-interactive apt-get upgrade -y
 
 # Install necessary libraries for guest additions and Vagrant NFS Share
 libraries="linux-headers-$(uname -r) build-essential dkms nfs-common"
-for library in $libraries;
+for library in ${libraries};
 do
-  if dpkg -s "$library" &> /dev/null;
+  if dpkg -s "${library}" &> /dev/null;
     then
-      echo -e "\n$library is already available and installed within the system.\n"
+      echo -e "\n${library} is already available and installed within the system.\n"
     else
-      echo -e  "\nAbout to install $library.\n"
-      DEBIAN_FRONTEND=non-interactive apt-get install "$library" -y
+      echo -e  "\nAbout to install ${library}.\n"
+      DEBIAN_FRONTEND=non-interactive apt-get install "${library}" -y
   fi
 done
 
 # Install necessary dependencies
 dependencies="curl wget xvfb inxi tree"
-for dependency in $dependencies;
+for dependency in ${dependencies};
 do
-  if dpkg -s "$dependency" &> /dev/null;
+  if dpkg -s "${dependencies}" &> /dev/null;
     then
-      echo -e "\n$dependency is already available and installed within the system.\n"
+      echo -e "\n${dependencies} is already available and installed within the system.\n"
     else
-      echo -e  "\nAbout to install $dependency.\n"
-      DEBIAN_FRONTEND=non-interactive apt-get install "$dependency" -y
+      echo -e  "\nAbout to install ${dependencies}.\n"
+      DEBIAN_FRONTEND=non-interactive apt-get install "${dependencies}" -y
   fi
 done
