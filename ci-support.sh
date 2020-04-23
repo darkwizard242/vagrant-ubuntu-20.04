@@ -6,7 +6,6 @@ BUILDSCRIPT_NON_MASTER="template-branch-others.json"
 
 build_template () {
   echo -e "\nBranch is: ${TRAVIS_BRANCH}"
-  echo -e "\nBox is: ${BOX}"
   echo -e "\nPacker template file is: $1"
   echo -e "\nValidating packer template file: $1"
   "${BUILDER}" validate "$1"
