@@ -8,9 +8,9 @@ build_template () {
   echo -e "\nBranch is: ${TRAVIS_BRANCH}"
   echo -e "\nPacker template file is: $1"
   echo -e "\nValidating packer template file: $1"
-  "${BUILDER}" validate "$1"
+  ./"${BUILDER}" validate "$1"
   echo -e "\nRunning packer build for template file: $1"
-  sudo PACKER_LOG=1 "${BUILDER}" build -timestamp-ui -color=false -force "$1"
+  sudo PACKER_LOG=1 ./"${BUILDER}" build -timestamp-ui -color=false -force "$1"
 }
 
 if [[ "${TRAVIS_BRANCH}" = "master" && ${TRAVIS_PULL_REQUEST_SLUG} = "" ]];
